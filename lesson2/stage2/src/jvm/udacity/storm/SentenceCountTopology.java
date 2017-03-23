@@ -136,26 +136,25 @@ public class SentenceCountTopology {
       String delims = "[ .,?!]+";
 
       String[] tokens = word1.split(delims);
-      for(int i=0;i<tokens.size();i++)
+      for(String word: tokens)
       {
       // check if the word is present in the map
-      if (countMap.get(token[i]) == null) {
+      if (countMap.get(word) == null) {
 
       // not present, add the word with a count of 1
-      countMap.put(token[i], 1);
+      countMap.put(word, 1);
       } else {
 
       // already there, hence get the count
-      Integer val = countMap.get(token[i]);
+      Integer val = countMap.get(word);
 
       // increment the count and save it to the map
-      countMap.put(token[i], ++val);
+      countMap.put(word, ++val);
     }
-
 
       //After countMap is updated, emit word and count to output collector
       // Syntax to emit the word and count (uncomment to emit)
-      collector.emit(new Values(token[i], countMap.get(token[i])));
+      collector.emit(new Values(word, countMap.get(word)));
 
       //END YOUR CODE Part 1-of-3
       //***************************************************
